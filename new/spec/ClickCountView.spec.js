@@ -28,4 +28,18 @@ describe('App.ClickCountView', () => {
       expect(updateElement.innerHTML).toBe(clickCounter.getValue().toString())
     })
   })
+
+  describe('increaseAndUpdateView()', () => {
+    it('ClickCounter의 increase()를 실행한다.', () => {
+      spyOn(clickCounter, 'increase')
+      view.increaseAndUpdateView()
+      expect(clickCounter.increase).toHaveBeenCalled()
+    })
+
+    it('updateView를 실행한다.', () => {
+      spyOn(view, 'updateView')
+      view.increaseAndUpdateView()
+      expect(view.updateView).toHaveBeenCalled()
+    })
+  })
 })
