@@ -1,10 +1,11 @@
 var App = App || {}
 
-App.ClickCountView = (clickCounter, updateElement) => {
+App.ClickCountView = (clickCounter, updateElement, triggerElement) => {
   if (!clickCounter) throw Error('invalid clickCounter module')
   if (!updateElement) throw Error('invalid updateElement module')
+  if (!triggerElement) throw Error('invalid triggerElement module')
 
-  return {
+  const view = {
     updateView() {
       updateElement.innerHTML = clickCounter.getValue()
     },
@@ -13,4 +14,10 @@ App.ClickCountView = (clickCounter, updateElement) => {
       this.updateView()
     },
   }
+
+  triggerElement.addEventListener('click', () => {
+    view.increaseAndUpdateView()
+  })
+
+  return view
 }
