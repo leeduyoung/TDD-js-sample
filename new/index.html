@@ -7,6 +7,20 @@
     <title>Document</title>
   </head>
   <body>
-    <!-- TODO: -->
+    <span id="counter-display"></span>
+    <button id="button-increase">Increase</button>
+
+    <script src="./src/ClickCounter.js"></script>
+    <script src="./src/ClickCountView.js"></script>
+    <script>
+      ;(() => {
+        // 우리가 만든 두개의 모듈과 마크업을 연동할 영역
+        const clickCounter = App.ClickCounter()
+        const updateElement = document.querySelector('#counter-display')
+        const triggerElement = document.querySelector('#button-increase')
+        const view = App.ClickCountView(clickCounter, updateElement, triggerElement)
+        view.updateView()
+      })()
+    </script>
   </body>
 </html>
